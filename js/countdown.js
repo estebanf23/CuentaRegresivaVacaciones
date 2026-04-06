@@ -44,7 +44,7 @@
 
   function animateFlip(el) {
     el.classList.remove('flip');
-    // Force reflow to restart animation
+    // Force browser reflow to restart the CSS animation from the beginning
     void el.offsetWidth;
     el.classList.add('flip');
   }

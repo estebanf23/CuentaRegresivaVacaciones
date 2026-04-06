@@ -4,6 +4,9 @@
 (function () {
   'use strict';
 
+  /* Duration (ms) the celebration fireworks & confetti run after the countdown ends */
+  const CELEBRATION_DURATION_MS = 60000;
+
   /* -------------------------------------------------------
      STARFIELD
      ------------------------------------------------------- */
@@ -197,7 +200,6 @@
   window.triggerCelebration = function () {
     fwActive = true;
 
-    // Burst of fireworks
     function burstFireworks() {
       for (let i = 0; i < 6; i++) {
         setTimeout(() => {
@@ -208,12 +210,17 @@
       }
     }
 
-    burstFireworks();
-    setInterval(burstFireworks, 2000);
+    const fwIntervalId   = setInterval(burstFireworks, 2000);
+    const confIntervalId = setInterval(() => launchConfetti(80), 1200);
 
-    // Confetti burst
+    setTimeout(() => {
+      clearInterval(fwIntervalId);
+      clearInterval(confIntervalId);
+    }, CELEBRATION_DURATION_MS);
+
+    // Initial burst
+    burstFireworks();
     launchConfetti(250);
-    setInterval(() => launchConfetti(80), 1200);
 
     // Show overlay
     const overlay = document.getElementById('celebration-overlay');

@@ -5,12 +5,12 @@
   'use strict';
 
   const LS_KEY_DATE = 'vacaciones_target_date';
-  /* Admin password — stored as a simple hash for minimal security.
-     The default password is: vacaciones2025
-     SHA-256 of "vacaciones2025" = pre-computed below.
+  /* Admin password — stored as a SHA-256 hash (computed at runtime via SubtleCrypto).
+     DEFAULT password: vacaciones2025  ← IMPORTANT: Change this via the admin panel
+     after first login. The default is visible in source code since this is a
+     client-only app; once changed, only the hash is stored in localStorage.
      Users can change it via the Change Password section.     */
   const LS_KEY_HASH = 'admin_pw_hash';
-  const DEFAULT_HASH = '9d38a98da026a5a7e3cc8c0e50fc95fce71d5a8a5b1e1d0d7e4c2e1f6b3a9c4'; // placeholder — computed at runtime
 
   /* -------------------------------------------------------
      Simple hash function (SHA-256 via SubtleCrypto)
@@ -137,7 +137,7 @@
         showMsg(configMsg, '⚠ Fecha inválida.', 'error');
         return;
       }
-      if (date <= new Date()) {
+      if (date < new Date()) {
         showMsg(configMsg, '⚠ La fecha debe ser en el futuro.', 'error');
         return;
       }
