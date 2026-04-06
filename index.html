@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🏰 Cuenta Regresiva — Vacaciones Orlando 🎢</title>
+  <meta name="description" content="Cuenta regresiva para las vacaciones en Disney y Universal Orlando" />
+  <meta name="theme-color" content="#020817" />
+
+  <!-- Preconnect fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- =====================================================
+       BACKGROUND LAYERS
+       ===================================================== -->
+  <div id="starfield" aria-hidden="true"></div>
+
+  <!-- Park Silhouettes Scene -->
+  <div id="park-scene" aria-hidden="true">
+    <div class="horizon-glow"></div>
+
+    <!-- Disney Cinderella / Magic Kingdom Castle -->
+    <svg class="silhouette-svg castle-disney" viewBox="0 0 300 260" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- Main tall center tower -->
+      <rect x="135" y="80" width="30" height="180"/>
+      <!-- Left tall tower -->
+      <rect x="70" y="110" width="22" height="150"/>
+      <!-- Right tall tower -->
+      <rect x="208" y="110" width="22" height="150"/>
+      <!-- Far left small tower -->
+      <rect x="20" y="150" width="16" height="110"/>
+      <!-- Far right small tower -->
+      <rect x="264" y="150" width="16" height="110"/>
+      <!-- Center spire cap -->
+      <polygon points="150,10 135,80 165,80"/>
+      <!-- Left tall spire -->
+      <polygon points="81,50 70,110 92,110"/>
+      <!-- Right tall spire -->
+      <polygon points="219,50 208,110 230,110"/>
+      <!-- Far left spire -->
+      <polygon points="28,110 20,150 36,150"/>
+      <!-- Far right spire -->
+      <polygon points="272,110 264,150 280,150"/>
+      <!-- Main body / connecting bridge -->
+      <rect x="62" y="175" width="176" height="85"/>
+      <!-- Gate arch (negative space effect via lighter rect) -->
+      <rect x="137" y="200" width="26" height="60" fill="rgba(2,8,23,0.85)"/>
+      <!-- Battlements top of center tower -->
+      <rect x="130" y="72" width="8" height="12"/>
+      <rect x="142" y="72" width="8" height="12"/>
+      <rect x="154" y="72" width="8" height="12"/>
+      <!-- Windows — center tower -->
+      <rect x="143" y="100" width="14" height="18" rx="7" fill="rgba(2,8,23,0.7)"/>
+      <rect x="143" y="128" width="14" height="18" rx="7" fill="rgba(2,8,23,0.7)"/>
+      <!-- Windows — left tower -->
+      <rect x="75" y="130" width="12" height="16" rx="6" fill="rgba(2,8,23,0.7)"/>
+      <!-- Windows — right tower -->
+      <rect x="212" y="130" width="12" height="16" rx="6" fill="rgba(2,8,23,0.7)"/>
+    </svg>
+
+    <!-- Universal Globe / Studios Globe -->
+    <svg class="silhouette-svg universal-globe" viewBox="0 0 280 260" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- Pedestal -->
+      <rect x="120" y="190" width="40" height="70"/>
+      <rect x="100" y="248" width="80" height="12"/>
+      <!-- Globe outer ring (circle) -->
+      <circle cx="140" cy="110" r="90" fill="none" stroke="currentColor" stroke-width="6"/>
+      <!-- Globe fill -->
+      <circle cx="140" cy="110" r="84"/>
+      <!-- Continent-like shapes on globe (darker) -->
+      <ellipse cx="120" cy="95" rx="30" ry="22" fill="rgba(2,8,23,0.6)"/>
+      <ellipse cx="165" cy="80" rx="18" ry="14" fill="rgba(2,8,23,0.6)"/>
+      <ellipse cx="155" cy="120" rx="22" ry="16" fill="rgba(2,8,23,0.6)"/>
+      <ellipse cx="110" cy="130" rx="14" ry="10" fill="rgba(2,8,23,0.6)"/>
+      <!-- Equator line -->
+      <line x1="52" y1="110" x2="228" y2="110" stroke="rgba(2,8,23,0.5)" stroke-width="3"/>
+      <!-- Meridian line -->
+      <ellipse cx="140" cy="110" rx="30" ry="84" fill="none" stroke="rgba(2,8,23,0.4)" stroke-width="3"/>
+      <!-- UNIVERSAL text area (simplified bars) -->
+      <rect x="82" y="103" width="116" height="14" rx="3" fill="rgba(2,8,23,0.75)"/>
+    </svg>
+
+    <!-- Hogwarts-style castle (Universal / Wizarding World) -->
+    <svg class="silhouette-svg castle-hogwarts" viewBox="0 0 240 260" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- Base wall -->
+      <rect x="10" y="160" width="220" height="100"/>
+      <!-- Left tower -->
+      <rect x="10" y="90" width="50" height="170"/>
+      <!-- Right tall tower -->
+      <rect x="180" y="60" width="50" height="200"/>
+      <!-- Center mid tower -->
+      <rect x="90" y="120" width="60" height="140"/>
+      <!-- Small connector towers -->
+      <rect x="55" y="130" width="40" height="130"/>
+      <rect x="145" y="140" width="35" height="120"/>
+      <!-- Spires / conical roofs (triangles) -->
+      <polygon points="35,20 10,90 60,90"/>
+      <polygon points="205,0 180,60 230,60"/>
+      <polygon points="120,55 90,120 150,120"/>
+      <polygon points="75,85 55,130 95,130"/>
+      <polygon points="163,100 145,140 181,140"/>
+      <!-- Battlements left tower -->
+      <rect x="10" y="82" width="10" height="12"/>
+      <rect x="24" y="82" width="10" height="12"/>
+      <rect x="38" y="82" width="10" height="12"/>
+      <!-- Battlements right tower -->
+      <rect x="180" y="52" width="10" height="12"/>
+      <rect x="196" y="52" width="10" height="12"/>
+      <rect x="212" y="52" width="10" height="12"/>
+      <!-- Windows -->
+      <rect x="22" y="110" width="16" height="22" rx="8" fill="rgba(2,8,23,0.7)"/>
+      <rect x="102" y="140" width="14" height="20" rx="7" fill="rgba(2,8,23,0.7)"/>
+      <rect x="192" y="82" width="14" height="20" rx="7" fill="rgba(2,8,23,0.7)"/>
+      <rect x="63" y="152" width="12" height="18" rx="6" fill="rgba(2,8,23,0.7)"/>
+    </svg>
+
+    <!-- Small Cinderella castle (extra depth — far left) -->
+    <svg class="silhouette-svg castle-cinderella" viewBox="0 0 180 200" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="75" y="60" width="30" height="140"/>
+      <rect x="40" y="90" width="20" height="110"/>
+      <rect x="120" y="90" width="20" height="110"/>
+      <rect x="15" y="120" width="15" height="80"/>
+      <rect x="150" y="120" width="15" height="80"/>
+      <polygon points="90,5 75,60 105,60"/>
+      <polygon points="50,35 40,90 60,90"/>
+      <polygon points="130,35 120,90 140,90"/>
+      <polygon points="23,82 15,120 31,120"/>
+      <polygon points="157,82 150,120 165,120"/>
+      <rect x="48" y="135" width="84" height="65"/>
+      <rect x="79" y="155" width="22" height="45" fill="rgba(2,8,23,0.8)"/>
+    </svg>
+  </div>
+
+  <!-- Fireworks canvas (background ambient) -->
+  <canvas id="fireworks-canvas" aria-hidden="true"></canvas>
+
+  <!-- Confetti canvas (celebration) -->
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+  <!-- =====================================================
+       CELEBRATION OVERLAY
+       ===================================================== -->
+  <div id="celebration-overlay" role="dialog" aria-live="assertive" aria-label="¡Llegó el día de las vacaciones!">
+    <div class="celebration-pulse-ring" aria-hidden="true"></div>
+    <div class="celebration-pulse-ring" aria-hidden="true"></div>
+    <div class="celebration-pulse-ring" aria-hidden="true"></div>
+
+    <div class="celebration-emoji" role="img" aria-label="Celebración">🎉</div>
+    <h2 class="celebration-title">¡Ya llegó el gran día!</h2>
+    <p class="celebration-subtitle">
+      ¡Las vacaciones tan esperadas han comenzado!<br/>
+      Orlando te espera con magia y aventura. ✨
+    </p>
+    <div class="celebration-icons" aria-hidden="true">🏰 🎢 🌍 🎠 🎆 🥳 🌟</div>
+  </div>
+
+  <!-- =====================================================
+       MAIN APP
+       ===================================================== -->
+  <main id="app">
+
+    <!-- Header -->
+    <header class="site-header">
+      <div class="icon-row" aria-hidden="true">🏰 🌟 🎢</div>
+      <h1>Cuenta Regresiva</h1>
+      <p class="subtitle">para las vacaciones de Orlando</p>
+      <hr class="neon-divider" aria-hidden="true" />
+    </header>
+
+    <!-- Destination Badges -->
+    <div class="destination-badge" aria-label="Destinos">
+      <span class="badge badge-disney">✨ Walt Disney World</span>
+      <span class="badge badge-universal">🎬 Universal Orlando</span>
+      <span class="badge badge-orlando">🌴 Orlando, Florida</span>
+    </div>
+
+    <!-- Countdown -->
+    <section class="countdown-wrapper" aria-label="Cuenta regresiva">
+      <p class="countdown-title" aria-hidden="true">⏳ Faltan ...</p>
+
+      <div class="countdown-grid" role="timer" aria-live="polite" aria-atomic="true">
+        <!-- Days -->
+        <div class="countdown-unit">
+          <div class="unit-card">
+            <span class="unit-number" id="cd-days" aria-label="días">00</span>
+          </div>
+          <span class="unit-label">Días</span>
+        </div>
+
+        <!-- Hours -->
+        <div class="countdown-unit">
+          <div class="unit-card">
+            <span class="unit-number" id="cd-hours" aria-label="horas">00</span>
+          </div>
+          <span class="unit-label">Horas</span>
+        </div>
+
+        <!-- Minutes -->
+        <div class="countdown-unit">
+          <div class="unit-card">
+            <span class="unit-number" id="cd-minutes" aria-label="minutos">00</span>
+          </div>
+          <span class="unit-label">Minutos</span>
+        </div>
+
+        <!-- Seconds -->
+        <div class="countdown-unit">
+          <div class="unit-card">
+            <span class="unit-number" id="cd-seconds" aria-label="segundos">00</span>
+          </div>
+          <span class="unit-label">Segundos</span>
+        </div>
+      </div>
+
+      <p class="target-date-display">
+        Destino: <span id="target-date-label">cargando...</span>
+      </p>
+    </section>
+
+    <!-- Admin link (subtle) -->
+    <nav class="admin-link-wrapper" aria-label="Administración">
+      <a href="admin.html" class="admin-link" aria-label="Página de administración">⚙ admin</a>
+    </nav>
+
+  </main>
+
+  <!-- =====================================================
+       SCRIPTS
+       ===================================================== -->
+  <script src="js/animations.js"></script>
+  <script src="js/countdown.js"></script>
+
+</body>
+</html>
