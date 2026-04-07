@@ -29,6 +29,7 @@ body {
   font-family: var(--font-body);
   overflow-x: hidden;
   position: relative;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cline x1='7' y1='28' x2='22' y2='11' stroke='%23886600' stroke-width='4.5' stroke-linecap='round'/%3E%3Cline x1='5' y1='28' x2='20' y2='11' stroke='%23ffd700' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpolygon points='20,2 22,8 28,8 23,12 25,18 20,14 15,18 17,12 12,8 18,8' fill='%23ffd700'/%3E%3Cpolygon points='20,2 22,8 28,8 23,12 25,18 20,14 15,18 17,12 12,8 18,8' fill='white' opacity='0.45'/%3E%3Ccircle cx='20' cy='8' r='2.5' fill='white' opacity='0.9'/%3E%3C/svg%3E") 20 2, auto;
 }
 
 /* ---------- Google Fonts fallback ---------- */
