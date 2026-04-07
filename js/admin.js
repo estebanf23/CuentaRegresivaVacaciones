@@ -123,9 +123,11 @@
 
   /* -------------------------------------------------------
      CONFIG — SAVE DATE
+     Intenta persistir en el servidor (data/config.json).
+     Si el servidor no está disponible, cae a localStorage.
      ------------------------------------------------------- */
   if (configForm) {
-    configForm.addEventListener('submit', (e) => {
+    configForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const val = dateInput ? dateInput.value : '';
       if (!val) {
@@ -141,9 +143,31 @@
         showMsg(configMsg, '⚠ La fecha debe ser en el futuro.', 'error');
         return;
       }
-      localStorage.setItem(LS_KEY_DATE, date.toISOString());
-      if (currentLabel) currentLabel.textContent = formatDisplay(date);
-      showMsg(configMsg, '✅ Fecha guardada correctamente. La cuenta regresiva ha sido actualizada.', 'success');
+
+      const isoDate = date.toISOString();
+
+      // Guardar en localStorage siempre (fallback y sincronización entre pestañas)
+      localStorage.setItem(LS_KEY_DATE, isoDate);
+
+      // Intentar persistir en el servidor
+      try {
+        const resp = await fetch('/api/config', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ targetDate: isoDate })
+        });
+        if (resp.ok) {
+          if (currentLabel) currentLabel.textContent = formatDisplay(date);
+          showMsg(configMsg, '✅ Fecha guardada en el servidor. La cuenta regresiva ha sido actualizada.', 'success');
+        } else {
+          if (currentLabel) currentLabel.textContent = formatDisplay(date);
+          showMsg(configMsg, '⚠ Fecha guardada localmente (el servidor devolvió un error inesperado).', 'warning');
+        }
+      } catch {
+        // Sin servidor — solo localStorage
+        if (currentLabel) currentLabel.textContent = formatDisplay(date);
+        showMsg(configMsg, '✅ Fecha guardada localmente. (Inicia el servidor para persistencia permanente.)', 'success');
+      }
     });
   }
 

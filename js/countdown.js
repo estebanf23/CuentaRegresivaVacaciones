@@ -50,6 +50,22 @@
   }
 
   /* -------------------------------------------------------
+     Cargar fecha desde el servidor y sincronizar localStorage
+     ------------------------------------------------------- */
+  async function loadDateFromServer() {
+    try {
+      const resp = await fetch('/api/config');
+      if (!resp.ok) return;
+      const data = await resp.json();
+      if (data.targetDate && !isNaN(new Date(data.targetDate).getTime())) {
+        localStorage.setItem(LS_KEY_DATE, data.targetDate);
+      }
+    } catch {
+      // Servidor no disponible — se usa localStorage o DEFAULT_DATE
+    }
+  }
+
+  /* -------------------------------------------------------
      UPDATE DISPLAY
      ------------------------------------------------------- */
   function updateCountdown() {
@@ -113,7 +129,10 @@
   /* -------------------------------------------------------
      INIT
      ------------------------------------------------------- */
-  function init() {
+  async function init() {
+    // Primero cargar del servidor para tener la fecha más actualizada
+    await loadDateFromServer();
+
     updateTargetLabel();
     updateCountdown();
     setInterval(updateCountdown, 1000);
